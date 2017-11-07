@@ -19,7 +19,7 @@ import android.view.ViewGroup;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
-public class MainActivity extends FragmentActivity implements LocalFragment.OnFragementAttached{
+public class MainActivity extends AppCompatActivity implements LocalFragment.OnFragementAttached{
 
     private TabLayout tab;
 
@@ -28,6 +28,8 @@ public class MainActivity extends FragmentActivity implements LocalFragment.OnFr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tab = findViewById(R.id.tab);
+        tab.setTabMode(TabLayout.MODE_SCROLLABLE);
+
         LocalFragmentPagerAdapter adapter = new LocalFragmentPagerAdapter(getSupportFragmentManager());
         final ViewPager pager = findViewById(R.id.viewPager5);
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

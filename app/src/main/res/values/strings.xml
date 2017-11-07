@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">moc5</string>
-    <string name="tab1">Tab1</string>
-    <string name="tab2">Tab2</string>
-    <string name="tab3">Tab3</string>
-    <string name="tab4">Tab4</string>
+    <string name="app_name">WhatsApp</string>
+    <string name="tab1">CHATS</string>
+    <string name="tab2">STATUS</string>
+    <string name="tab3">CALLS</string>
+    <string name="tab4">CONTACTS</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -10,27 +10,38 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/toolbar">
+        android:id="@+id/toolbar"
+        android:background="@color/tab">
+
         <android.support.design.widget.TabLayout
+            android:id="@+id/tab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/tab">
+            android:elevation="24dp"
+            app:tabGravity="center"
+            app:tabMode="scrollable"
+            app:tabTextColor="@color/tabText"
+            app:tabSelectedTextColor="@android:color/white">
+
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/tab1"/>
+                android:text="@string/tab1" />
+
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/tab2"/>
+                android:text="@string/tab2" />
+
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/tab3"/>
+                android:text="@string/tab3" />
+
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/tab4"/>
+                android:text="@string/tab4" />
         </android.support.design.widget.TabLayout>
     </android.support.v7.widget.Toolbar>
 <android.support.v4.view.ViewPager
