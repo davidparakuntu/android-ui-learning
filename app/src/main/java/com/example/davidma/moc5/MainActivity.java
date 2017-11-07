@@ -19,27 +19,33 @@ import android.view.ViewGroup;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
+import java.util.Stack;
+
 public class MainActivity extends AppCompatActivity implements LocalFragment.OnFragementAttached{
 
     private TabLayout tab;
 
+    private Stack<String> trigger;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tab = findViewById(R.id.tab);
         tab.setTabMode(TabLayout.MODE_SCROLLABLE);
-
+        trigger = new Stack<>();
         LocalFragmentPagerAdapter adapter = new LocalFragmentPagerAdapter(getSupportFragmentManager());
         final ViewPager pager = findViewById(R.id.viewPager5);
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                tab.setScrollPosition(position,0,true);
+                //tab.setScrollPosition(position,0,true);
+               // tab.scrollTo(positionOffsetPixels,0);
+
             }
             @Override
             public void onPageSelected(int position) {
-                tab.setScrollPosition(position,0,true);
+                //tab.setScrollPosition(position,0,true);
+                tab.getTabAt(position).select();
             }
 
             @Override
@@ -48,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements LocalFragment.OnF
             }
         });
         pager.setAdapter(adapter);
+
         tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -62,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements LocalFragment.OnF
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                int position = tab.getPosition();
+                pager.setCurrentItem(position);
             }
         });
 
