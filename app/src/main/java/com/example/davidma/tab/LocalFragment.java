@@ -26,7 +26,6 @@ public class LocalFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        ((MainActivity)context).attached(getArguments().getInt("Tab#"));
     }
 
 
@@ -52,7 +51,5 @@ public class LocalFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-    public static interface OnFragementAttached{
-        void attached(int fragementNumber);
-    }
+
 }

@@ -2,6 +2,7 @@ package com.example.davidma.tab;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -10,7 +11,7 @@ import android.os.Bundle;
 
 import java.util.Stack;
 
-public class MainActivity extends AppCompatActivity implements LocalFragment.OnFragementAttached{
+public class MainActivity extends FragmentActivity{
 
     private TabLayout tab;
 
@@ -66,10 +67,6 @@ public class MainActivity extends AppCompatActivity implements LocalFragment.OnF
 
     }
 
-    @Override
-    public void attached(int fragementNumber) {
-
-    }
 
     public class LocalFragmentPagerAdapter extends FragmentPagerAdapter{
 
