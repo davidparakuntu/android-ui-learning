@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+
+
         tab = findViewById(R.id.tab);
         tab.setTabMode(TabLayout.MODE_SCROLLABLE);
         LocalFragmentPagerAdapter adapter = new LocalFragmentPagerAdapter(getSupportFragmentManager());
