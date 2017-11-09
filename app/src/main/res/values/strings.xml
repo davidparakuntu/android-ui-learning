@@ -10,4 +10,6 @@
     <string name="settings">Settings</string>
     <string name="open">Open navigation drawer</string>
     <string name="close">Close navigation drawer</string>
+    <string name="empty">David</string>
+    <string name="title_activity_drawer_layout">DrawerLayout</string>
 </resources>
