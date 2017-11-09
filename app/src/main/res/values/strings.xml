@@ -12,4 +12,5 @@
     <string name="close">Close navigation drawer</string>
     <string name="empty">David</string>
     <string name="title_activity_drawer_layout">DrawerLayout</string>
+    <string name="emailID">david.parakuntu@icloud.com</string>
 </resources>

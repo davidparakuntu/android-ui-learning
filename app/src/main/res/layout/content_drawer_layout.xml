@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.davidma.tab.DrawerLayout"
-    tools:showIn="@layout/activity_drawer_layout"
     android:id="@+id/drawer3">
 
     <!-- Layout for Appbar, toolbar and content-->
@@ -32,6 +31,7 @@
         android:layout_gravity="start"
         android:id="@+id/navigation3"
         app:menu="@menu/drawer2"
+        app:headerLayout="@layout/drawer_navigation_header"
         android:fitsSystemWindows="true">
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>
