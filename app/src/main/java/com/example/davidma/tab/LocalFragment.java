@@ -10,6 +10,11 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.davidma.tab.data.Contact;
+import com.example.davidma.tab.data.DataApi;
+
+import java.util.List;
+
 /**
  * Created by davidma on 11/8/17.
  */
@@ -28,8 +33,11 @@ public class LocalFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        DataApi dataApi = new DataApi(context);
+        this.contactList = dataApi.getContacts("contacts.json");
     }
 
+    private List<Contact> contactList;
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 

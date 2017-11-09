@@ -16,6 +16,11 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.davidma.tab.data.Contact;
+import com.example.davidma.tab.data.DataApi;
+
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -27,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DataApi dataApi = new DataApi(this);
+        List<Contact> contacts = dataApi.getContacts("contacts.json");
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
