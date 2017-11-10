@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.davidma.tab.data.Contact;
 import com.example.davidma.tab.data.DataApi;
@@ -27,14 +28,28 @@ public class LocalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getArguments().getInt(FRAGEMENT_ID),null);
+
+        if(Integer.parseInt(getArguments().get("Tab#").toString())==0) {
+            DataApi dataApi = new DataApi(getContext());
+            this.contactList = dataApi.getContacts("contacts.json");
+            ((ViewGroup) view).removeAllViews();
+            for (Contact contact : contactList) {
+                TextView nameView = new TextView(getContext());
+                nameView.setText(contact.getName());
+                ((ViewGroup) view).addView(nameView);
+
+                TextView emailView = new TextView(getContext());
+                emailView.setText(contact.getEmailID());
+                ((ViewGroup) view).addView(emailView);
+            }
+        }
         return view;
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        DataApi dataApi = new DataApi(context);
-        this.contactList = dataApi.getContacts("contacts.json");
+
     }
 
     private List<Contact> contactList;
