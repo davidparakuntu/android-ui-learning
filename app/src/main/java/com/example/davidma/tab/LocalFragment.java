@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,15 +33,9 @@ public class LocalFragment extends Fragment {
         if(Integer.parseInt(getArguments().get("Tab#").toString())==0) {
             DataApi dataApi = new DataApi(getContext());
             this.contactList = dataApi.getContacts("contacts.json");
-            ((ViewGroup) view).removeAllViews();
             for (Contact contact : contactList) {
-                TextView nameView = new TextView(getContext());
-                nameView.setText(contact.getName());
-                ((ViewGroup) view).addView(nameView);
-
-                TextView emailView = new TextView(getContext());
-                emailView.setText(contact.getEmailID());
-                ((ViewGroup) view).addView(emailView);
+                View contactView = getLayoutInflater().inflate(R.layout.fragment_contact, null);
+                ((ViewGroup)view).addView(contactView);
             }
         }
         return view;
