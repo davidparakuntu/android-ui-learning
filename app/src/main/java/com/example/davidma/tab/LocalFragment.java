@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.davidma.tab.data.Contact;
@@ -30,6 +31,8 @@ public class LocalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getArguments().getInt(FRAGEMENT_ID),null);
 
+        ScrollView scrollView = new ScrollView(getContext());
+
         if(Integer.parseInt(getArguments().get("Tab#").toString())==0) {
             DataApi dataApi = new DataApi(getContext());
             this.contactList = dataApi.getContacts("contacts.json");
@@ -38,7 +41,8 @@ public class LocalFragment extends Fragment {
                 ((ViewGroup)view).addView(contactView);
             }
         }
-        return view;
+        scrollView.addView(view);
+        return scrollView;
     }
 
     @Override

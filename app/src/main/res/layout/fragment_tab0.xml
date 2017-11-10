@@ -5,5 +5,4 @@
     android:id="@+id/contacts_container"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
 </LinearLayout>
