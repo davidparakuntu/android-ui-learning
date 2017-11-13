@@ -1,7 +1,11 @@
 package com.example.davidma.tab;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +19,9 @@ import android.widget.TextView;
 
 import com.example.davidma.tab.data.Contact;
 import com.example.davidma.tab.data.DataApi;
+import static android.provider.ContactsContract.Contacts;
+import static android.provider.ContactsContract.Data;
+import static android.provider.ContactsContract.RawContacts;
 
 import java.util.List;
 
@@ -35,10 +42,25 @@ public class LocalFragment extends Fragment {
 
         if(Integer.parseInt(getArguments().get("Tab#").toString())==0) {
             DataApi dataApi = new DataApi(getContext());
+            Uri uri = ContactsContract.Contacts.CONTENT_URI;
+            ContentResolver contentResolver = getContext().getContentResolver();
+            Cursor cursor = contentResolver.query(uri, null, null, null, null);
             this.contactList = dataApi.getContacts("contacts.json");
             for (Contact contact : contactList) {
                 View contactView = getLayoutInflater().inflate(R.layout.fragment_contact, null);
                 ((ViewGroup)view).addView(contactView);
+            }
+
+            int columnCount = cursor.getColumnCount();
+            while (cursor.moveToNext()){
+                View contactView = getLayoutInflater().inflate(R.layout.fragment_contact, null);
+                ((ViewGroup)view).addView(contactView);
+                    int index = cursor.getColumnIndex("photo_uri");
+                    String photoURI = cursor.getString(index);
+                    if(photoURI != null) {
+                        index = cursor.getColumnIndex("last_time_contacted");
+                    }
+
             }
         }
         scrollView.addView(view);
