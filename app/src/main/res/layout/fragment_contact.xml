@@ -1,10 +1,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="contact"
-            type="com.example.davidma.tab.data.Contact"/>
+            type="com.example.davidma.tab.data.Contact" />
     </data>
+
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -42,14 +44,20 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:paddingLeft="30dp"
                 android:text="@{contact.emailID}" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:paddingLeft="30dp"
                 android:text="@{contact.proffesion}" />
+
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
     </LinearLayout>
 </layout>
