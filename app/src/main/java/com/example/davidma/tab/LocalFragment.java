@@ -50,18 +50,28 @@ public class LocalFragment extends Fragment {
             ContentResolver contentResolver = getContext().getContentResolver();
             Cursor cursor = contentResolver.query(uri, null, null, null, null);
             while (cursor.moveToNext()){
-
                 View contactView = getLayoutInflater().inflate(R.layout.fragment_contact, null);
                 FragmentContactBinding dataBinding = DataBindingUtil.bind(contactView);
                 int index = cursor.getColumnIndex(Data.DISPLAY_NAME);
                 String name = cursor.getString(index);
+                Cursor phCursor = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{cursor.getString(cursor.getColumnIndex(Contacts._ID))}, null);
                 Contact contact = new Contact();
                 contact.setName(name);
-                contact.setEmailID(name);
-                contact.setProffesion(name);
+                if(phCursor.moveToNext()) {
+                    String phoneNumber = phCursor.getString(phCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                    contact.setProffesion(phoneNumber);
+                    phCursor.close();
+                }
+
+                Cursor emailCursor = contentResolver.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI,null,ContactsContract.CommonDataKinds.Email.CONTACT_ID+" = ?",new String[]{cursor.getString(cursor.getColumnIndex(Contacts._ID))},null);
+                if(emailCursor.moveToNext()) {
+                    String emailID = emailCursor.getString(emailCursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS));
+                    contact.setEmailID(emailID);
+                }
                 dataBinding.setContact(contact);
                 ((ViewGroup)view).addView(contactView);
             }
+            cursor.close();
         }
         scrollView.addView(view);
         return scrollView;
