@@ -1,5 +1,10 @@
 package com.example.davidma.tab.data;
 
+import android.databinding.Bindable;
+import android.databinding.Observable;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,12 +12,14 @@ import java.util.List;
  * Created by davidma on 11/10/17.
  */
 
-public class Contact {
+public class Contact implements Observable{
     private String name;
     private List<String> phoneNumbers = new ArrayList<>();
     private String emailID;
     private int age;
     private String proffesion;
+
+    private Drawable photo;
 
     public String getName() {
         return name;
@@ -53,5 +60,24 @@ public class Contact {
 
     public void setProffesion(String proffesion) {
         this.proffesion = proffesion;
+    }
+
+    @Bindable
+    public Drawable getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Drawable photo) {
+        this.photo = photo;
+    }
+
+    @Override
+    public void addOnPropertyChangedCallback(OnPropertyChangedCallback onPropertyChangedCallback) {
+
+    }
+
+    @Override
+    public void removeOnPropertyChangedCallback(OnPropertyChangedCallback onPropertyChangedCallback) {
+
     }
 }
