@@ -3,6 +3,8 @@ package com.example.davidma.tab;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -19,6 +21,8 @@ import android.widget.TextView;
 
 import com.example.davidma.tab.data.Contact;
 import com.example.davidma.tab.data.DataApi;
+import com.example.davidma.tab.databinding.FragmentContactBinding;
+
 import static android.provider.ContactsContract.Contacts;
 import static android.provider.ContactsContract.Data;
 import static android.provider.ContactsContract.RawContacts;
@@ -45,23 +49,18 @@ public class LocalFragment extends Fragment {
             Uri uri = ContactsContract.Contacts.CONTENT_URI;
             ContentResolver contentResolver = getContext().getContentResolver();
             Cursor cursor = contentResolver.query(uri, null, null, null, null);
-            this.contactList = dataApi.getContacts("contacts.json");
-            for (Contact contact : contactList) {
-                View contactView = getLayoutInflater().inflate(R.layout.fragment_contact, null);
-                ((ViewGroup)view).addView(contactView);
-            }
-
-            int columnCount = cursor.getColumnCount();
             while (cursor.moveToNext()){
 
                 View contactView = getLayoutInflater().inflate(R.layout.fragment_contact, null);
+                FragmentContactBinding dataBinding = DataBindingUtil.bind(contactView);
+                int index = cursor.getColumnIndex(Data.DISPLAY_NAME);
+                String name = cursor.getString(index);
+                Contact contact = new Contact();
+                contact.setName(name);
+                contact.setEmailID(name);
+                contact.setProffesion(name);
+                dataBinding.setContact(contact);
                 ((ViewGroup)view).addView(contactView);
-                    int index = cursor.getColumnIndex("photo_uri");
-                    String photoURI = cursor.getString(index);
-                    if(photoURI != null) {
-                        index = cursor.getColumnIndex("last_time_contacted");
-                    }
-
             }
         }
         scrollView.addView(view);

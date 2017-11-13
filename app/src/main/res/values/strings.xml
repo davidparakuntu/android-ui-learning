@@ -13,4 +13,5 @@
     <string name="empty">David</string>
     <string name="title_activity_drawer_layout">DrawerLayout</string>
     <string name="emailID">david.parakuntu@icloud.com</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>
