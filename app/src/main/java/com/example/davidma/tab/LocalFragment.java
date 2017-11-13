@@ -53,6 +53,7 @@ public class LocalFragment extends Fragment {
 
             int columnCount = cursor.getColumnCount();
             while (cursor.moveToNext()){
+
                 View contactView = getLayoutInflater().inflate(R.layout.fragment_contact, null);
                 ((ViewGroup)view).addView(contactView);
                     int index = cursor.getColumnIndex("photo_uri");
